@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto - DS Steel</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --yellow:#FFB800;
+  --dark:#111;
+  --blue:#0E3A8A;
+  --card-bg: #FFF8E0;
+}
+
+/* GENERAL */
+body{
+  margin:0;
+  font-family:'Lato', sans-serif;
+  background: linear-gradient(160deg, #E0F7FF, #FFFACD, #00000010); /* fondo azul-amarillo suave */
+  color:var(--dark);
+}
+
+/* SIDEBAR DESKTOP */
+.sidebar{
+  position:fixed;left:0;top:0;height:100vh;width:96px;
+  background:linear-gradient(180deg, #0E3A8A, #081a3a);
+  display:flex;flex-direction:column;align-items:center;
+  padding:18px 10px;z-index:1000;
+}
+.sidebar .logo{
+  font-family:'Playfair Display',serif;
+  color:#fff;font-size:18px;margin-bottom:22px;
+}
+.menu-icons{display:flex;flex-direction:column;gap:18px}
+.menu-icons a{
+  position:relative;
+  width:58px;height:58px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;text-decoration:none;font-size:22px;
+  background:rgba(255,255,255,.12);
+  transition:.25s ease;
+}
+.menu-icons a:hover{background:var(--yellow);color:#000;transform:translateY(-2px)}
+.menu-icons a span{
+  position:absolute;left:68px;
+  background:linear-gradient(135deg, #0E3A8A, #000);
+  color:#fff;padding:10px 16px;border-radius:12px;
+  font-size:14px;opacity:0;transform:translateX(-10px);transition:.25s ease;
+}
+.menu-icons a:hover span{opacity:1;transform:translateX(0);}
+
+/* MAIN */
+.main{ margin-left:96px; padding:0 20px; }
+
+/* TITULO */
+.titulo-info{
+  text-align:center;
+  font-size:38px;
+  font-family:'Playfair Display', serif;
+  font-weight:700;
+  color:var(--yellow);
+  margin:40px 0;
+}
+
+/* TARJETAS */
+.contacto-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px;
+  max-width:1200px;
+  margin:0 auto 60px auto;
+}
+.contact-card{
+  background: var(--card-bg);
+  border-radius:20px;
+  border:2px solid #000;
+  padding:25px 20px;
+  text-align:center;
+  color:#111;
+  box-shadow:0 0 15px rgba(0,0,0,0.1);
+  transition: all 0.5s ease;
+  font-family:'Lato', sans-serif;
+  overflow:hidden;
+  position:relative;
+}
+
+/* Gradiente animado azul-amarillo */
+.contact-card::before{
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: linear-gradient(45deg, #FFD700, #0E3A8A, #FFFF99, #0E3A8A);
+  background-size:400% 400%;
+  opacity:0;
+  transition:opacity 0.4s ease;
+  z-index:0;
+  border-radius:20px;
+}
+.contact-card:hover::before{
+  animation: gradientMove 6s ease infinite;
+  opacity:0.35;
+}
+@keyframes gradientMove{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+/* Contenido encima del gradiente */
+.contact-card *{ position:relative; z-index:1; }
+
+.contact-card i{
+  font-size:42px;
+  margin-bottom:12px;
+  transition: transform 0.3s ease;
+}
+.contact-card:hover i{ transform: scale(1.2); }
+
+.contact-card h2{
+  font-size:20px;
+  font-weight:700;
+  margin:10px 0 6px;
+  font-family:'Playfair Display', serif;
+}
+.contact-card p{
+  font-size:15px;
+  margin-bottom:12px;
+  opacity:0.85;
+}
+
+/* BOTONES */
+.btn-contacto{
+  display:inline-block;
+  margin-top:10px;
+  padding:10px 22px;
+  background: linear-gradient(90deg,#ffd700,#fff5cc);
+  color:#111;
+  border-radius:12px;
+  font-weight:700;
+  text-decoration:none;
+  transition: all 0.3s ease;
+  border:2px solid #000;
+}
+.btn-contacto:hover{
+  background: linear-gradient(90deg,#fff5cc,#ffd700);
+  transform:scale(1.05);
+}
+
+/* MENÚ MÓVIL SOLO EN MOVIL */
+.mobile-menu{
+  display:none;
+  position:fixed;
+  top:0;
+  left:-96px;
+  width:96px;
+  height:100vh;
+  background:linear-gradient(180deg, #0E3A8A, #081a3a);
+  color:#fff;
+  padding:18px 10px;
+  transition:left 0.35s ease;
+  z-index:1200;
+}
+.mobile-menu.active{left:0;}
+.mobile-menu .toggle-arrow{
+  position:absolute;
+  top:50%;
+  right:-34px;
+  transform:translateY(-50%);
+  width:34px; height:90px;
+  background:var(--yellow);
+  color:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:0 14px 14px 0;
+  cursor:pointer;
+  box-shadow:4px 0 18px rgba(0,0,0,.25);
+  z-index:1300;
+  transition:transform 0.3s ease;
+}
+.mobile-menu .toggle-arrow i{font-size:22px;}
+
+/* RESPONSIVE MÓVIL */
+@media(max-width:900px){
+  .main{margin-left:0;}
+  .sidebar{display:none;}
+  .mobile-menu{display:block;}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR DESKTOP -->
+<aside class="sidebar" id="sidebar">
+  <div class="logo">DS Steel</div>
+  <div class="menu-icons">
+    <a href="index.html"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a href="ceo.html"><i class="fas fa-user-tie"></i><span>Sobre Nosotros</span></a>
+    <a href="proyectos.html"><i class="fas fa-drafting-compass"></i><span>Proyectos</span></a>
+    <a href="modelo3D.html"><i class="fas fa-cube"></i><span>Modelos 3D</span></a>
+    <a href="contacto.html"><i class="fas fa-envelope"></i><span>Contacto</span></a>
+  </div>
+</aside>
+
+<!-- MENÚ MÓVIL -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="menu-icons">
+    <a href="index.html"><i class="fas fa-home"></i></a>
+    <a href="ceo.html"><i class="fas fa-user-tie"></i></a>
+    <a href="proyectos.html"><i class="fas fa-drafting-compass"></i></a>
+    <a href="modelo3D.html"><i class="fas fa-cube"></i></a>
+    <a href="contacto.html"><i class="fas fa-envelope"></i></a>
+  </div>
+  <div class="toggle-arrow" onclick="toggleMobileMenu()">
+    <i class="fas fa-chevron-right"></i>
+  </div>
+</div>
+
+<main class="main">
+<!-- TARJETAS CONTACTO -->
+<section class="reveal">
+<h1 class="titulo-info">Contacto</h1>
+<div class="contacto-container">
+  <div class="contact-card"><i class="fab fa-whatsapp"></i><h2>WhatsApp Administración</h2><p>Área administrativa DS Steel</p><a class="btn-contacto" href="https://wa.me/5492984125816" target="_blank">📱 Enviar WhatsApp</a></div>
+  <div class="contact-card"><i class="fas fa-phone"></i><h2>Teléfono</h2><p>Llamanos directamente</p><a class="btn-contacto" href="tel:+5492984739184">📞 Llamar</a></div>
+  <div class="contact-card"><i class="fab fa-instagram"></i><h2>Instagram</h2><p>Seguinos para ver nuestros trabajos</p><a class="btn-contacto" href="https://www.instagram.com/ds_steel_framing._/" target="_blank">📸 Ver Instagram</a></div>
+  <div class="contact-card"><i class="fab fa-facebook"></i><h2>Facebook</h2><p>Seguinos también en Facebook</p><a class="btn-contacto" href="https://www.facebook.com/share/17sgK76XSC/" target="_blank">📘 Ver Facebook</a></div>
+</div>
+</section>
+
+<!-- FORMULARIO CONTACTO -->
+<section style="max-width:820px;margin:50px auto 0;padding:30px;background: linear-gradient(145deg, rgba(0, 0, 0, 0.95), rgb(0, 0, 0)); border-radius:22px;text-align:center;box-shadow:0 0 35px rgba(9, 165, 255, 0.993), inset 0 0 20px rgba(255,215,0,0.15);backdrop-filter:blur(6px);">
+<h2 style="color:#ffd700;margin-bottom:8px;letter-spacing:1px;">Contacto por Email</h2>
+<p style="opacity:0.9;margin-bottom:18px;">Dejanos tu nombre, correo y mensaje</p>
+<form id="leadForm" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+<input type="text" id="nombre" placeholder="Tu nombre" required style="grid-column: span 1;padding:14px;border-radius:14px;border:none;outline:none;background:#111;color:#fff;box-shadow: inset 0 0 10px rgb(0, 170, 255);">
+<input type="email" id="email" placeholder="Tu email" required style="grid-column: span 1;padding:14px;border-radius:14px;border:none;outline:none;background:#111;color:#fff;box-shadow: inset 0 0 10px rgba(233, 229, 18, 0.925);">
+<textarea id="mensaje" placeholder="Escribí tu mensaje..." required rows="4" style="grid-column: span 2;padding:14px;border-radius:14px;border:none;outline:none;background:#111;color:#fff;resize:vertical;box-shadow: inset 0 0 10px rgba(0,0,0,0.6);"></textarea>
+<div style="grid-column: span 2; display:flex; justify-content:center; margin-top:6px;">
+<button class="btn-contacto" type="submit" style="padding:12px 30px;">Enviar mensaje</button>
+</div>
+</form>
+<div id="formStatus" style="margin-top:12px;min-height:24px;font-weight:bold;"></div>
+</section>
+
+</main>
+
+<script>
+function toggleMobileMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const icon = menu.querySelector('.toggle-arrow i');
+  menu.classList.toggle('active');
+  icon.classList.toggle('fa-chevron-right');
+  icon.classList.toggle('fa-chevron-left');
+}
+</script>
+
+<script type="module">
+// FORMULARIO NETLIFY
+const form = document.getElementById("leadForm");
+const nombreInput = document.getElementById("nombre");
+const emailInput = document.getElementById("email");
+const mensajeInput = document.getElementById("mensaje");
+const status = document.getElementById("formStatus");
+
+form.addEventListener("submit", async (e)=>{
+e.preventDefault();
+const nombre=nombreInput.value.trim();
+const email=emailInput.value.trim();
+const mensaje=mensajeInput.value.trim();
+if(!nombre||!email||!mensaje)return;
+const btn=form.querySelector('button[type="submit"]');
+btn.disabled=true;
+btn.textContent="Enviando...";
+
+try{
+const res=await fetch("/.netlify/functions/sendEmail",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({nombre,email,mensaje})});
+const data=await res.json();
+if(data.ok){status.textContent="Mensaje enviado correctamente 🙌";status.style.color="#00ffaa";form.reset();}
+else{status.textContent="Error enviando el mensaje ❌";status.style.color="#ff5555";}
+}catch(err){console.error(err);status.textContent="Error enviando el mensaje ❌";status.style.color="#ff5555";}
+finally{btn.disabled=false;btn.textContent="Enviar mensaje";}
+});
+</script>
+
+</body>
+</html>

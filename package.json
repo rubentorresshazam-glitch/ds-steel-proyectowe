@@ -1,0 +1,12 @@
+{
+  "name": "ds-steel-web",
+  "version": "1.0.0",
+  "description": "Sitio web de DS Steel con formulario de contacto",
+  "type": "module",
+  "scripts": {
+    "start": "netlify dev"
+  },
+  "dependencies": {
+    "resend": "^3.5.0"
+  }
+}

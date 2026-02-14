@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modelos 3D - DS Steel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Font Awesome para iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root{
+  --yellow:#ffd84d;
+  --blue1:#0E3A8A;
+  --blue2:#081a3a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',sans-serif;
+  background:linear-gradient(135deg,#12131a,#1e1f2b);
+  color:#f5f5f5;
+  overflow-x:hidden;
+  user-select:none;
+}
+
+/* SIDEBAR */
+.sidebar{
+  position:fixed;left:0;top:0;height:100vh;width:96px;
+  background:linear-gradient(180deg, var(--blue1), var(--blue2));
+  display:flex;flex-direction:column;align-items:center;
+  padding:18px 10px;z-index:1000;
+}
+.sidebar .logo{
+  font-family:'Playfair Display',serif;color:#fff;font-size:18px;margin-bottom:22px;
+}
+.menu-icons{display:flex;flex-direction:column;gap:18px}
+.menu-icons a{
+  position:relative;width:58px;height:58px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  text-decoration:none;background:rgba(255,255,255,.12);
+  transition:.25s ease;
+}
+.menu-icons a:hover{background:var(--yellow)}
+.menu-icons a span{
+  position:absolute;left:68px;
+  background:linear-gradient(135deg, var(--blue1), #000);
+  color:#fff;padding:10px 16px;border-radius:12px;
+  font-size:14px;white-space:nowrap;
+  opacity:0;transform:translateX(-10px);transition:.25s ease;
+}
+.menu-icons a:hover span{opacity:1;transform:translateX(0)}
+.menu-icons a i{
+  font-size:22px;
+  transition:.25s ease;
+}
+.menu-icons a:hover i{
+  transform:scale(1.15);
+}
+
+/* MOBILE MENU */
+@media(max-width:900px){
+  .main{margin-left:0;}
+  .sidebar{
+    transform:translateX(-88%);
+    transition:.3s ease;
+  }
+  .sidebar.open{transform:translateX(0);}
+  .menu-toggle{
+    position:absolute;left:100%;top:50%;
+    transform:translateY(-50%);
+    background:var(--yellow);color:#000;
+    border-radius:0 10px 10px 0;
+    padding:8px 6px;cursor:pointer;font-size:16px;
+  }
+}
+
+.main{margin-left:96px;padding:60px 40px}
+@media(max-width:900px){.main{margin-left:0;padding:80px 20px}}
+
+.section-title{
+  font-family:'Playfair Display',serif;font-size:2.4rem;margin:40px 0 14px;
+  background:linear-gradient(90deg,#00bfff,var(--yellow));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+.models-wrap{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;padding:26px;margin-bottom:60px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+
+/* SLIDER */
+.slider{position:relative;overflow:hidden;border-radius:18px;min-height:360px;background:#0b0c14;cursor:grab}
+.slider:active{cursor:grabbing}
+.slide{position:absolute;inset:0;opacity:0;transition:.7s}
+.slide.active{opacity:1;z-index:2}
+.slide video{width:100%;height:100%;object-fit:contain;border-radius:18px;pointer-events:none}
+
+/* DOTS */
+.dots{display:flex;justify-content:center;gap:10px;margin-top:10px}
+.dot{width:10px;height:10px;border-radius:50%;background:#555;cursor:pointer;transition:.2s}
+.dot.active,.dot:hover{background:var(--yellow);transform:scale(1.2)}
+
+/* CARD */
+.model-card{
+  margin-top:22px;
+  background:linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  padding:22px 26px;
+  backdrop-filter:blur(8px);
+}
+.model-card h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;
+  margin-bottom:8px;
+  color:var(--yellow);
+}
+.model-card p{font-size:1rem;color:#eaeaea;line-height:1.7}
+</style>
+</head>
+<body>
+
+<div class="sidebar" id="sidebar">
+  <div class="logo">DS</div>
+  <div class="menu-icons">
+    <a href="index.html"><i class="fa-solid fa-house"></i><span>Inicio</span></a>
+    <a href="ceo.html"><i class="fa-solid fa-user-tie"></i><span>Sobre Nosotros</span></a>
+    <a href="proyectos.html"><i class="fa-solid fa-building"></i><span>Proyectos</span></a>
+    <a href="contacto.html"><i class="fa-solid fa-envelope"></i><span>Contacto</span></a>
+  </div>
+  <div class="menu-toggle" id="menuToggle">❯</div>
+</div>
+
+<div class="main">
+  <h2 class="section-title">Estructuras</h2>
+  <div class="models-wrap">
+    <section class="slider" data-type="estructuras">
+      <div class="slide active"><video muted loop playsinline></video></div>
+      <div class="slide"><video muted loop playsinline></video></div>
+      <div class="slide"><video muted loop playsinline></video></div>
+      <div class="slide"><video muted loop playsinline></video></div>
+      <div class="slide"><video muted loop playsinline></video></div>
+      <div class="slide"><video muted loop playsinline></video></div>
+      <div class="dots"></div>
+    </section>
+    <div class="model-card" id="card-estructuras"><h3></h3><p></p></div>
+  </div>
+
+  <h2 class="section-title">Renderizados</h2>
+  <div class="models-wrap">
+    <section class="slider" data-type="renderizados">
+      <div class="slide active"><video muted loop playsinline></video></div>
+      <div class="slide"><video muted loop playsinline></video></div>
+      <div class="slide"><video muted loop playsinline></video></div>
+      <div class="slide"><video muted loop playsinline></video></div>
+      <div class="slide"><video muted loop playsinline></video></div>
+      <div class="dots"></div>
+    </section>
+    <div class="model-card" id="card-renderizados"><h3></h3><p></p></div>
+  </div>
+
+  <!-- NUEVA SECCIÓN VIDEO -->
+  <h2 class="section-title">Ideas y Prototipos</h2>
+  <div class="models-wrap">
+    <section class="slider" data-type="ideasintro">
+      <div class="slide active"><video muted loop playsinline></video></div>
+      <div class="dots"></div>
+    </section>
+    <div class="model-card" id="card-ideasintro"><h3></h3><p></p></div>
+  </div>
+</div>
+
+<script>
+const data = {
+  estructuras: [
+    { video:"estructuras/estructura1.mp4", titulo:"Estructura Base Vivienda", desc:"Sistema estructural liviano diseñado para viviendas unifamiliares, optimizado para una ejecución rápida, precisa y con excelente comportamiento estructural." },
+    { video:"estructuras/estructura2.mp4", titulo:"Estructura Modular", desc:"Solución modular adaptable a ampliaciones futuras, ideal para proyectos escalables y desarrollos por etapas." },
+    { video:"estructuras/estructura3.mp4", titulo:"Estructura Industrial", desc:"Estructura preparada para naves y galpones, con diseño optimizado para grandes luces y cargas específicas." },
+    { video:"estructuras/estructura4.mp4", titulo:"Sistema de Entrepisos", desc:"Configuración estructural para entrepisos livianos que optimizan el aprovechamiento del espacio interior." },
+    { video:"estructuras/estructura5.mp4", titulo:"Estructura para Ampliación", desc:"Modelo pensado para ampliaciones sobre construcciones existentes, reduciendo tiempos y costos de obra." },
+    { video:"estructuras/estructura6.mp4", titulo:"Estructura Personalizada", desc:"Solución estructural desarrollada a medida según requerimientos técnicos y funcionales del proyecto." }
+  ],
+  renderizados: [
+    { video:"modelos/casa1 3D.mp4", titulo:"Vivienda Moderna", desc:"Propuesta arquitectónica contemporánea con diseño minimalista, líneas puras y una distribución funcional pensada para el confort diario." },
+    { video:"modelos/casa2 3D.mp4", titulo:"Casa Familiar", desc:"Modelo de vivienda familiar con espacios amplios, integración interior–exterior y enfoque en eficiencia energética." },
+    { video:"modelos/casa3 3D.mp4", titulo:"Vivienda Compacta", desc:"Solución habitacional optimizada para terrenos reducidos, sin resignar diseño ni funcionalidad." },
+    { video:"modelos/casa4 3D.mp4", titulo:"Proyecto Premium", desc:"Propuesta de alto estándar estético y constructivo, orientada a desarrollos residenciales de categoría." },
+    { video:"modelos/casa5 3D.mp4", titulo:"Modelo a Medida", desc:"Render conceptual adaptable a diferentes tipologías de vivienda según necesidades del cliente." }
+  ],
+  ideasintro: [
+    { video:"ideasintro/videofull.mp4", titulo:"Video Conceptual DS Steel", desc:"Presentación de ideas y prototipos para estructuras innovadoras, mostrando funcionalidad, estética y concepto general del proyecto." }
+  ]
+};
+
+document.querySelectorAll('.slider').forEach(slider=>{
+  const type = slider.dataset.type;
+  let index = 0;
+  const slides = slider.querySelectorAll('.slide');
+  const videos = slider.querySelectorAll('video');
+  const dotsContainer = slider.querySelector('.dots');
+  const card = document.getElementById(
+    type === 'estructuras' ? 'card-estructuras' :
+    type === 'renderizados' ? 'card-renderizados' : 'card-ideasintro'
+  );
+
+  data[type].forEach((item,i)=>{
+    videos[i].src = item.video;
+    const dot=document.createElement('div');
+    dot.className='dot'; if(i===0) dot.classList.add('active');
+    dot.onclick=()=>show(i); dotsContainer.appendChild(dot);
+  });
+
+  const dots = dotsContainer.querySelectorAll('.dot');
+
+  function show(i){
+    slides.forEach((s,idx)=>{s.classList.toggle('active',idx===i); videos[idx].pause();});
+    dots.forEach((d,idx)=>d.classList.toggle('active',idx===i));
+    videos[i].play().catch(()=>{});
+    card.querySelector('h3').textContent = data[type][i].titulo;
+    card.querySelector('p').textContent = data[type][i].desc;
+    index=i;
+  }
+
+  let startX=0,isDown=false;
+  slider.addEventListener('touchstart',e=>startX=e.touches[0].clientX);
+  slider.addEventListener('touchend',e=>{
+    const diff = e.changedTouches[0].clientX - startX;
+    if(diff < -30) show((index+1)%slides.length);
+    if(diff > 30) show((index-1+slides.length)%slides.length);
+  });
+  slider.addEventListener('mousedown',e=>{isDown=true;startX=e.clientX});
+  slider.addEventListener('mouseup',e=>{
+    if(!isDown) return;
+    const diff = e.clientX - startX; isDown=false;
+    if(diff < -40) show((index+1)%slides.length);
+    if(diff > 40) show((index-1+slides.length)%slides.length);
+  });
+
+  show(0);
+});
+
+// MENU MOBILE
+const sidebar=document.getElementById('sidebar');
+const toggle=document.getElementById('menuToggle');
+toggle.onclick=()=>{
+  sidebar.classList.toggle('open');
+  toggle.innerHTML = sidebar.classList.contains('open') ? '❮' : '❯';
+};
+
+// PROTECCIONES BÁSICAS
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e=>{
+  if(e.key==="F12" || (e.ctrlKey && e.shiftKey && ['I','C','J'].includes(e.key.toUpperCase())) || (e.ctrlKey && ['U','S'].includes(e.key.toUpperCase())) ){
+    e.preventDefault();
+  }
+});
+document.addEventListener('selectstart', e => e.preventDefault());
+document.addEventListener('dragstart', e => e.preventDefault());
+</script>
+
+</body>
+</html>

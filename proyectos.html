@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Diseños y Proyectos - DS Steel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0b1d2d, #020617);
+  color: #fff;
+  margin: 0;
+}
+html, body { width:100%; height:100%; overflow-x:hidden; }
+
+/* ===== HEADER ===== */
+header {
+  text-align:center;
+  padding:120px 20px 30px 20px;
+  font-family:'Playfair Display', serif;
+  font-size:2em;
+  background: linear-gradient(90deg, #1e90ff, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* SIDEBAR DESKTOP */
+.sidebar{
+  position:fixed;left:0;top:0;height:100vh;width:96px;
+  background:linear-gradient(180deg, #0E3A8A, #081a3a);
+  display:flex;flex-direction:column;align-items:center;
+  padding:18px 10px;z-index:1000;
+}
+.sidebar .logo{
+  font-family:'Playfair Display',serif;
+  color:#fff;font-size:18px;margin-bottom:22px;
+}
+.menu-icons{display:flex;flex-direction:column;gap:18px}
+.menu-icons a{
+  position:relative;
+  width:58px;height:58px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;text-decoration:none;font-size:22px;
+  background:rgba(255,255,255,.12);
+  transition:.25s ease;
+}
+.menu-icons a:hover{background:#ffd84d;color:#000;transform:translateY(-2px)}
+.menu-icons a span{
+  position:absolute;left:68px;
+  background:linear-gradient(135deg, #0E3A8A, #000);
+  color:#fff;padding:10px 16px;border-radius:12px;
+  font-size:14px;opacity:0;transform:translateX(-10px);transition:.25s ease;
+}
+.menu-icons a:hover span{opacity:1;transform:translateX(0);}
+
+/* ===== MAIN ===== */
+main { max-width: 1200px; margin:auto; padding: 20px 20px 20px 140px; }
+
+.proyecto {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  margin-bottom: 100px;
+  align-items: stretch;
+}
+
+/* ===== GALERIA ===== */
+.slider-container {
+  position: relative;
+  border-radius: 16px;
+  background: #000;
+  box-shadow:0 10px 25px rgba(0,0,0,0.7);
+  aspect-ratio: 16 / 9;
+  max-height: 420px;
+  overflow:hidden;
+  user-select:none;
+}
+.slider-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display:block;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+  position: absolute;
+  inset:0;
+  pointer-events:none; /* evita clicks y arrastre */
+}
+.slider-container img.active { opacity: 1; position: relative; }
+
+/* ===== TARJETA ===== */
+.card {
+  background: linear-gradient(145deg, rgba(15,20,30,0.95), rgba(5,8,12,0.95));
+  border-radius: 16px;
+  padding: 26px;
+  border: 2px solid #000;
+  box-shadow: 0 0 25px rgba(0,0,0,0.7);
+  align-self: stretch;
+}
+
+.card h2 {
+  font-family:'Playfair Display', serif;
+  color:#ffd84d;
+  margin-top:0;
+}
+
+.card p {
+  line-height:1.7;
+  color:#ddd;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  main{padding:20px;}
+  .proyecto { grid-template-columns: 1fr; }
+  .slider-container{max-height:280px;}
+}
+
+/* MENÚ MÓVIL */
+.mobile-menu{
+  display:none;
+  position:fixed;
+  top:0;
+  left:-96px;
+  width:96px;
+  height:100vh;
+  background:linear-gradient(180deg, #0E3A8A, #081a3a);
+  color:#fff;
+  padding:18px 10px;
+  transition:left 0.35s ease;
+  z-index:1200;
+}
+.mobile-menu.active{left:0;}
+.mobile-menu .toggle-arrow{
+  position:absolute;
+  top:50%;
+  right:-34px;
+  transform:translateY(-50%);
+  width:34px; height:90px;
+  background:#ffd84d;
+  color:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:0 14px 14px 0;
+  cursor:pointer;
+  box-shadow:4px 0 18px rgba(0,0,0,.25);
+}
+@media(max-width:900px){
+  .sidebar{display:none;}
+  .mobile-menu{display:block;}
+}
+/* PROTECCIÓN DE IMÁGENES */
+.slider-container img {
+  pointer-events: none; /* evita clics y arrastrar */
+  user-select: none;    /* evita selección */
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+/* DESHABILITAR CLICK DERECHO EN TODA LA PÁGINA */
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="logo">DS Steel</div>
+  <div class="menu-icons">
+    <a href="index.html"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a href="ceo.html"><i class="fas fa-user-tie"></i><span>Sobre Nosotros</span></a>
+    <a href="proyectos.html"><i class="fas fa-drafting-compass"></i><span>Proyectos</span></a>
+    <a href="modelo3D.html"><i class="fas fa-cube"></i><span>Modelos 3D</span></a>
+    <a href="contacto.html"><i class="fas fa-envelope"></i><span>Contacto</span></a>
+  </div>
+</aside>
+
+<!-- MENÚ MÓVIL -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="menu-icons">
+    <a href="index.html"><i class="fas fa-home"></i></a>
+    <a href="ceo.html"><i class="fas fa-user-tie"></i></a>
+    <a href="proyectos.html"><i class="fas fa-drafting-compass"></i></a>
+    <a href="modelo3D.html"><i class="fas fa-cube"></i></a>
+    <a href="contacto.html"><i class="fas fa-envelope"></i></a>
+  </div>
+  <div class="toggle-arrow" onclick="toggleMobileMenu()">
+    <i class="fas fa-chevron-right" id="arrowIcon"></i>
+  </div>
+</div>
+
+<header>Diseños y Proyectos</header>
+
+<main>
+<!-- Secciones de diseño 1 a 6 -->
+<section class="proyecto"><div class="slider-container" id="slider1"></div><div class="card"><h2>Diseño 1 – Casa Moderna de 2 Pisos</h2><p id="text1"></p></div></section>
+<section class="proyecto"><div class="slider-container" id="slider2"></div><div class="card"><h2>Diseño 2 – Casa Campestre de 1 Piso</h2><p id="text2"></p></div></section>
+<section class="proyecto"><div class="slider-container" id="slider3"></div><div class="card"><h2>Diseño 3 – Casa Campestre de 1 Piso</h2><p id="text3"></p></div></section>
+<section class="proyecto"><div class="slider-container" id="slider4"></div><div class="card"><h2>Diseño 4 – Proyecto Innovador</h2><p id="text4"></p></div></section>
+<section class="proyecto"><div class="slider-container" id="slider5"></div><div class="card"><h2>Diseño 5 – Vivienda Compacta</h2><p id="text5"></p></div></section>
+<section class="proyecto"><div class="slider-container" id="slider6"></div><div class="card"><h2>Diseño 6 – Residencia de Lujo</h2><p id="text6"></p></div></section>
+
+</main>
+
+<script>
+function toggleMobileMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const icon = document.getElementById('arrowIcon');
+  menu.classList.toggle('active');
+  icon.classList.toggle('fa-chevron-right');
+  icon.classList.toggle('fa-chevron-left');
+}
+
+/* GALERIAS */
+function loadGallery(id, folder, prefix, total, ext){
+  const container = document.getElementById(id);
+  let index = 1;
+  const img = document.createElement("img");
+  img.classList.add("active");
+  container.appendChild(img);
+
+  function show(){
+    img.src = `${folder}/${prefix}${index}.${ext}`;
+    index++;
+    if(index > total) index = 1;
+  }
+  show();
+  container.addEventListener("click", show);
+  container.addEventListener("touchstart", show);
+}
+
+// Cargar sliders
+loadGallery("slider1","diseno1","diseno y proyecto-",20,"jpg");
+loadGallery("slider2","diseno2","diseno-",14,"jpg");
+loadGallery("slider3","diseno3","galeria-",22,"jpg");
+loadGallery("slider4","diseno4","imagen",9,"jpeg");
+loadGallery("slider5","diseno5","img",5,"jpeg");
+loadGallery("slider6","diseno6","home",17,"jpeg");
+
+/* TEXTO AUTOMATICO CHAMUYO */
+function autoText(id, text){
+  let i=0;
+  const el=document.getElementById(id);
+  const interval=setInterval(()=>{
+    el.textContent += text.charAt(i);
+    i++;
+    if(i>=text.length) clearInterval(interval);
+  }, 18);
+} 
+/* TEXTO AUTOMATICO */
+autoText("text1",`Esta casa moderna de dos niveles cuenta con un total de 190,78 m² construidos bajo techo, distribuidos en:
+Primer piso: 116,64 m²
+Segundo piso: 74,14 m²
+
+Se recomienda un lote mínimo de 12,54 m de frente por 24 m de fondo (300 m²), apto para entornos rurales o urbanos.`);
+
+autoText("text2",`Esta casa campestre de un nivel cuenta con un total de 109,04 m² construidos bajo techo, distribuidos en:
+Área construida cerrada: 100,39 m²
+Área construida abierta bajo techo: 8,65 m²
+
+Se recomienda un lote mínimo de 12 m de frente por 20 m de fondo (240 m²), apto para entornos rurales o urbanos.`);
+
+autoText("text3",`Esta casa campestre de un nivel cuenta con un total de 219,75 m² construidos bajo techo, distribuidos en:
+Área cerrada bajo techo: 188,42 m²
+Área abierta bajo techo: 31,33 m²
+
+Adicionalmente, incluye:
+Garaje: 33,92 m²
+Piscina: 33,98 m²
+Pisos exteriores: 31,09 m²
+
+El total general construido es de 318,74 m².
+
+Se recomienda un lote mínimo de 20 m de frente por 30 m de fondo (600 m²), apto para entornos rurales o urbanos.`);
+
+/* Chamuyo genérico para los nuevos diseños */
+autoText("text4","Proyecto innovador con arquitectura moderna, iluminación natural y distribución eficiente. Ideal para espacios amplios y funcionales.");
+autoText("text5","Vivienda compacta, funcional y pensada para maximizar cada metro cuadrado disponible. Perfecta para entornos urbanos.");
+autoText("text6","Residencia de lujo con acabados premium, amplios espacios y un estilo arquitectónico distinguido. Comodidad y elegancia garantizadas.");
+</script>
+<script>
+document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+
+</body>
+</html>

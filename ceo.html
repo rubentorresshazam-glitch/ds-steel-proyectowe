@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sobre Nuestro CEO - DS Steel</title>
+<meta name="description" content="Conocé la historia de DS Steel. Especialistas en Steel Framing, estructuras modernas, eficientes y duraderas.">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --yellow:#ffd84d;
+  --blue1:#0E3A8A;
+  --blue2:#081a3a;
+  --white:#ffffff;
+  --light-bg:rgba(255,255,255,0.12);
+  --card-bg:rgba(255,255,255,0.25);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;
+  color: var(--white);
+  overflow-x:hidden;
+  user-select:none;
+  background-image: url("fotosintro/fondo1.jpeg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  min-height:100vh;
+  position:relative;
+}
+
+/* OVERLAY SUAVE PARA CONTRASTE */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,0.35); /* suaviza el fondo */
+  z-index:-1;
+}
+
+/* SIDEBAR LATERAL */
+.sidebar{
+  position:fixed;
+  left:0;
+  top:0;
+  height:100vh;
+  width:96px;
+  background: linear-gradient(180deg,var(--blue1),var(--blue2));
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:18px 10px;
+  z-index:1000;
+}
+.sidebar .logo{
+  font-family:'Playfair Display',serif;
+  font-size:22px;
+  font-weight:700;
+  color:var(--white);
+  margin-bottom:30px;
+}
+.menu-icons{display:flex;flex-direction:column;gap:18px;}
+.menu-icons a{
+  width:60px;height:60px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  border-radius:14px;
+  background:rgba(255,255,255,0.12);
+  transition:.3s;
+  position:relative;
+}
+.menu-icons a:hover{background:var(--yellow);}
+.menu-icons a svg{width:28px;height:28px; fill:var(--white);}
+.menu-icons a:hover svg{fill:#000;}
+.menu-icons a span{
+  position:absolute;
+  left:70px;
+  background:var(--blue1);
+  color:var(--white);
+  padding:8px 14px;
+  border-radius:12px;
+  font-size:14px;
+  white-space:nowrap;
+  opacity:0;
+  transform:translateX(-10px);
+  transition:.25s ease;
+}
+.menu-icons a:hover span{opacity:1; transform:translateX(0);}
+
+/* BOTONES A+/A- */
+.text-controls{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:30px;
+}
+.text-controls button{
+  background: linear-gradient(90deg,var(--yellow),var(--blue1));
+  border:none;
+  border-radius:6px;
+  padding:6px 10px;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+  color:#000;
+  transition:.2s;
+}
+.text-controls button:hover{transform:scale(1.1);}
+
+/* Toggle menú móvil */
+.menu-toggle{
+  display:none;
+  position:absolute;left:100%;top:50%;
+  transform:translateY(-50%);
+  background:var(--yellow);
+  color:#000;
+  border-radius:0 10px 10px 0;
+  padding:8px 6px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+/* MAIN */
+.main{
+  margin-left:96px;
+  padding:60px 40px;
+  max-width:1100px;
+}
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:2.4rem;
+  margin-bottom:20px;
+  color:var(--blue1);
+  border-bottom:3px solid var(--blue1);
+  display:inline-block;
+}
+
+/* TITULOS */
+h2.titulo-principal{
+  font-size:3rem;
+  font-family:'Playfair Display',serif;
+  font-weight:700;
+  color:var(--white);
+  margin-bottom:40px;
+  border-bottom:4px solid var(--blue1);
+  display:inline-block;
+}
+h3{font-family:'Playfair Display',serif;font-size:28px;color:var(--white);margin-bottom:16px;}
+h4{font-family:'Playfair Display',serif;font-size:22px;color:var(--white);margin-bottom:12px;}
+p, li{font-size:18px; line-height:1.9; margin-bottom:16px; color:var(--white);}
+li{margin-left:16px;}
+strong{color:var(--yellow); font-weight:700; border-bottom:2px solid var(--yellow); padding-bottom:2px;}
+
+/* BLOQUES */
+.bloque-info{
+  padding:30px;
+  border-left:4px solid var(--yellow);
+  background:var(--light-bg);
+  border-radius:12px;
+  margin-bottom:30px;
+}
+.tarjeta, .ceo, .tarjeta-testimonio{
+  background:var(--card-bg);
+  border-radius:14px;
+  padding:30px;
+  margin-bottom:25px;
+  border:1px solid rgba(0,0,0,0.1);
+  box-shadow:0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* TESTIMONIOS */
+.tarjetas-testimonios{display:flex;flex-wrap:wrap;gap:20px;}
+.texto-testimonio{font-style:italic; color:#f0f0f0;}
+.autor-testimonio{margin-top:10px; font-weight:600; color:var(--yellow);}
+
+/* CALIFICACIÓN */
+.rating-simple{display:flex;justify-content:center;gap:12px;font-size:36px;cursor:pointer;user-select:none;}
+.rating-simple span{
+  background:linear-gradient(90deg,var(--yellow),var(--blue1));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:grayscale(1);
+  transition:.2s;
+}
+.rating-simple span.active{filter:grayscale(0); transform:scale(1.2);}
+.rating-simple span:hover{filter:grayscale(0); transform:scale(1.3);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .main{margin-left:0;padding:20px;}
+  .sidebar{transform:translateX(-88%);transition:.3s;}
+  .sidebar.open{transform:translateX(0);}
+  .menu-toggle{display:block;}
+  .text-controls{flex-direction:row; justify-content:center;}
+  .tarjeta, .ceo, .tarjeta-testimonio{padding:20px;}
+  h2.titulo-principal{font-size:2.2rem;}
+  h3{font-size:22px;}
+  h4{font-size:20px;}
+  body{
+    background-size: cover;
+    background-position: center top;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="sidebar" id="sidebar">
+  <div class="logo">DS</div>
+  <div class="menu-icons">
+    <a href="index.html">
+      <svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9h-3v9h-12v-9h-3z"/></svg>
+      <span>Inicio</span>
+    </a>
+    <a href="proyectos.html">
+      <svg viewBox="0 0 24 24"><path d="M3 3h18v2h-18v-2zm0 4h12v2h-12v-2zm0 4h18v2h-18v-2zm0 4h12v2h-12v-2zm0 4h18v2h-18v-2z"/></svg>
+      <span>Proyectos</span>
+    </a>
+    <a href="contacto.html">
+      <svg viewBox="0 0 24 24"><path d="M21 8v13h-18v-13h18zm0-2h-18v-2c0-1.1.9-2 2-2h14c1.1 0 2 .9 2 2v2zm-11 7l2.5 3 3-4-7.5-4 2 5z"/></svg>
+      <span>Contacto</span>
+    </a>
+    <a href="modelo3D.html">
+      <svg viewBox="0 0 24 24"><path d="M12 2l8 4v12l-8 4-8-4v-12l8-4zm0 2.18l-6 3v10.64l6 3 6-3v-10.64l-6-3z"/></svg>
+      <span>Modelos 3D</span>
+    </a>
+  </div>
+
+  <div class="text-controls">
+    <button onclick="changeTextSize(1)">A+</button>
+    <button onclick="changeTextSize(-1)">A-</button>
+  </div>
+
+  <div class="menu-toggle" id="menuToggle">❯</div>
+</div>
+
+<div class="main">
+  <h2 class="titulo-principal">Sobre Nosotros</h2>
+
+  <h3>Nuestra Historia</h3>
+  <p><strong>DS Steel</strong> nació en <strong>2016</strong>, fundada por <strong>Darío Silveira</strong>, con la idea de transformar proyectos en 
+  <strong>estructuras sólidas, funcionales y elegantes mediante Steel Framing</strong>.  
+  Desde sus primeros trabajos, la empresa se ha destacado por su <strong>capacidad de innovación</strong> y adaptación a cada cliente.</p>
+
+  <div class="bloque-info">
+    <h3>Steel Framing · ¿Qué es?</h3>
+    <p>Es un <strong>sistema de construcción industrializado</strong> basado en el armado de muros con perfiles de 
+    <strong>acero galvanizado estructural</strong>, combinados con placas de yeso interiores, aislación térmica y acústica, 
+    capas de rigidización, barreras de viento y agua, y múltiples opciones de terminación.</p>
+  </div>
+
+  <div class="mision-vision">
+    <div class="tarjeta">
+      <h4>Misión</h4>
+      <p>Brindar proyectos de <strong>Steel Framing seguros, eficientes y de alta calidad</strong>, adaptados a las necesidades reales de cada cliente.</p>
+    </div>
+    <div class="tarjeta">
+      <h4>Visión</h4>
+      <p>Ser referentes en <strong>innovación y excelencia constructiva</strong>, desarrollando proyectos confiables y duraderos.</p>
+    </div>
+  </div>
+
+  <div class="valores">
+    <h3>Nuestros Valores</h3>
+    <ul>
+      <li><strong>Compromiso:</strong> Cumplimos cada proyecto con responsabilidad.</li>
+      <li><strong>Calidad:</strong> Procesos certificados y materiales confiables.</li>
+      <li><strong>Innovación:</strong> Mejora constante en diseño y ejecución.</li>
+      <li><strong>Confianza:</strong> Transparencia y comunicación clara.</li>
+    </ul>
+  </div>
+
+  <div class="ceo">
+    <h3>Fundador y CEO</h3>
+    <p><strong>Darío Silveira</strong> lidera DS Steel con una visión práctica, enfocada en resultados y excelencia técnica.</p>
+  </div>
+
+  <div class="ceo">
+    <h3>Directora Ejecutiva de Recursos Humanos</h3>
+    <p><strong>Jeniffer Contreras</strong> lidera el desarrollo del capital humano, acompañando el crecimiento profesional de la empresa.</p>
+  </div>
+
+  <div class="testimonios">
+    <h3>Testimonios</h3>
+    <div class="tarjetas-testimonios">
+      <div class="tarjeta-testimonio">
+        <p class="texto-testimonio">"Gracias a Darío y su equipo, nuestro proyecto superó todas las expectativas."</p>
+        <p class="autor-testimonio">- Marcos Salazar</p>
+      </div>
+      <div class="tarjeta-testimonio">
+        <p class="texto-testimonio">"Trabajo impecable, profesional y entregado a tiempo."</p>
+        <p class="autor-testimonio">- Laura Gómez</p>
+      </div>
+      <div class="tarjeta-testimonio">
+        <p class="texto-testimonio">"Confiables y atentos en cada detalle."</p>
+        <p class="autor-testimonio">- Martín Rodríguez</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tarjeta" style="text-align:center; max-width:600px; margin: 60px auto 0;">
+    <h3>Calificá nuestra web</h3>
+    <div class="rating-simple" id="ratingStars">
+      <span data-value="1">★</span>
+      <span data-value="2">★</span>
+      <span data-value="3">★</span>
+      <span data-value="4">★</span>
+      <span data-value="5">★</span>
+    </div>
+    <p id="ratingMsg" style="margin-top:15px; color:var(--yellow);"></p>
+  </div>
+</div>
+
+<script>
+// MENU MOBILE
+const sidebar=document.getElementById('sidebar');
+const toggle=document.getElementById('menuToggle');
+toggle.onclick=()=>{ 
+  sidebar.classList.toggle('open'); 
+  toggle.innerHTML = sidebar.classList.contains('open') ? '❮' : '❯'; 
+};
+
+// TEXTO A+/A-
+let currentFontSize=18;
+function changeTextSize(step){
+  currentFontSize += step;
+  if(currentFontSize<14) currentFontSize=14;
+  if(currentFontSize>26) currentFontSize=26;
+  document.querySelectorAll("p, li").forEach(el=>el.style.fontSize=currentFontSize+"px");
+}
+
+// CALIFICACIÓN
+const stars=document.querySelectorAll("#ratingStars span");
+const msg=document.getElementById("ratingMsg");
+function setRating(value){
+  stars.forEach(star=>star.classList.toggle("active", star.dataset.value<=value));
+  localStorage.setItem("dssteel_rating", value);
+  msg.textContent=`Gracias por calificar nuestra web con ${value} estrella${value>1?"s":""} ⭐`;
+}
+stars.forEach(star=>star.addEventListener("click",()=>{setRating(star.dataset.value)}));
+const saved=localStorage.getItem("dssteel_rating");
+if(saved) setRating(saved);
+</script>
+
+</body>
+</html>

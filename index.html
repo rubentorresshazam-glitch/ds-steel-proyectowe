@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DS Steel | Construcción en Steel Framing</title>
+<meta name="description" content="DS Steel - Especialistas en Steel Framing. Estructuras modernas, eficientes y duraderas.">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+<style>
+:root{
+  --blue:#0E3A8A;
+  --yellow:#FFB800;
+  --cream:#F6E9CF;
+  --beige:#EFE2C6;
+}
+
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Montserrat',sans-serif;background:#fff;color:#111;overflow-x:hidden;}
+
+/* INTRO */
+.intro-screen{
+  position:fixed; inset:0; z-index:3000; background:#000;
+  display:flex; align-items:center; justify-content:center;
+}
+.intro-screen video{width:100%;height:100%;object-fit:cover;}
+.intro-screen.fade-out{animation:fadeOut 1.2s ease forwards;}
+@keyframes fadeOut{to{opacity:0;visibility:hidden}}
+
+/* SIDEBAR DESKTOP */
+.sidebar{
+  position:fixed;left:0;top:0;height:100vh;width:96px;
+  background:linear-gradient(180deg, #0E3A8A, #081a3a);
+  display:flex;flex-direction:column;align-items:center;
+  padding:18px 10px;z-index:1000;
+}
+.sidebar .logo{
+  font-family:'Playfair Display',serif;
+  color:#fff;font-size:18px;margin-bottom:22px;
+}
+.menu-icons{display:flex;flex-direction:column;gap:18px}
+.menu-icons a{
+  position:relative;
+  width:58px;height:58px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;text-decoration:none;font-size:22px;
+  background:rgba(255,255,255,.12);
+  transition:.25s ease;
+}
+.menu-icons a:hover{background:var(--yellow);color:#000;transform:translateY(-2px)}
+.menu-icons a span{
+  position:absolute;left:68px;
+  background:linear-gradient(135deg, #0E3A8A, #000);
+  color:#fff;padding:10px 16px;border-radius:12px;
+  font-size:14px;opacity:0;transform:translateX(-10px);transition:.25s ease;
+}
+.menu-icons a:hover span{opacity:1;transform:translateX(0);}
+
+/* MAIN */
+.main{margin-left:96px;}
+
+/* HERO */
+.hero{position:relative;min-height:90vh;display:flex;align-items:center;padding:90px 64px;background:#000;overflow:hidden;}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;z-index:1;}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(120deg, rgba(14,58,138,.4), rgba(0,0,0,.35));
+  z-index:2;
+}
+
+/* SLIDER DE IMÁGENES */
+.hero-bg{position:absolute;inset:0;z-index:0;}
+.hero-bg img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; opacity:0;
+  transition:opacity 1.2s ease-in-out, transform 6s ease;
+  transform:scale(1);
+  filter: contrast(1.05) brightness(1.05) saturate(1.1);
+}
+.hero-bg img.active{opacity:0.7;transform:scale(1.08);}
+
+.hero-content{position:relative;z-index:3;max-width:650px;color:#fff;}
+.hero h1{font-family:'Playfair Display',serif;font-size:56px;margin:0 0 14px;}
+.hero p{font-size:18px;color:#e5e7eb;}
+.hero-buttons{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap;}
+
+/* BOTONES */
+.btn{padding:14px 30px;border-radius:10px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:.25s ease;}
+.btn-primary{background:var(--yellow);color:#000;}
+.btn-outline{border:2px solid #fff;color:#fff;}
+
+/* SECTIONS */
+.section{padding:120px 20px;text-align:center;}
+.section h2{
+  display:flex;align-items:center;gap:20px;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:42px;color:var(--blue);
+}
+.section h2::before,.section h2::after{
+  content:"";flex:1;height:2px;background:linear-gradient(90deg, transparent, var(--blue));
+}
+.section h2::after{background:linear-gradient(90deg, var(--blue), transparent);}
+
+/* FONDO CREMA TARJETAS */
+.cards-section{background:linear-gradient(180deg, var(--cream), var(--beige));}
+
+/* TARJETAS */
+.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:40px;}
+.card{
+  background:#fff;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.1);
+  padding:20px;width:300px;text-align:left;
+  transition:transform .3s ease, box-shadow .3s ease, opacity .6s ease;
+  opacity:0;transform:translateY(20px);
+}
+.card i{font-size:28px;color:var(--blue);margin-bottom:10px;display:block;}
+.card.visible{opacity:1;transform:translateY(0);}
+
+/* MOBILE MENU */
+@media(max-width:900px){
+  .main{margin-left:0;}
+  .sidebar{
+    transform:translateX(-88%);
+    transition:.3s ease;
+  }
+  .sidebar.open{transform:translateX(0);}
+  .menu-toggle{
+    position:absolute;left:100%;top:50%;
+    transform:translateY(-50%);
+    background:var(--yellow);color:#000;
+    border-radius:0 10px 10px 0;
+    padding:8px 6px;cursor:pointer;font-size:16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div class="intro-screen" id="intro">
+  <video autoplay muted playsinline>
+    <source src="ideasintro/ideasintro4.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="logo">DS Steel</div>
+  <div class="menu-icons">
+    <a href="index.html"><i class="fas fa-home"></i><span>Inicio</span></a>
+    <a href="ceo.html"><i class="fas fa-user-tie"></i><span>Sobre Nosotros</span></a>
+    <a href="proyectos.html"><i class="fas fa-drafting-compass"></i><span>Proyectos</span></a>
+    <a href="modelo3D.html"><i class="fas fa-cube"></i><span>Modelos 3D</span></a>
+    <a href="contacto.html"><i class="fas fa-envelope"></i><span>Contacto</span></a>
+    <a href="#razones"><i class="fas fa-lightbulb"></i><span>Razones</span></a>
+  </div>
+  <div class="menu-toggle" id="menuToggle"><i class="fas fa-angle-right"></i></div>
+</aside>
+
+<main class="main">
+  <!-- TU INICIO ORIGINAL -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="fotosintro/fondo1.jpeg" class="active">
+      <img src="fotosintro/fondo2.jpeg">
+      <img src="fotosintro/fondo3.jpeg">
+      <img src="fotosintro/fondo4.jpeg">
+      <img src="fotosintro/fondo5.jpeg">
+      <img src="fotosintro/fondo6.jpeg">
+    </div>
+    <div class="hero-content">
+      <h1>Construí tu futuro<br>con DS Steel</h1>
+      <p>Soluciones en Steel Frame para viviendas, comercios e industria.</p>
+      <div class="hero-buttons">
+        <a href="proyectos.html" class="btn btn-outline"><i class="fas fa-eye"></i> Ver Proyectos</a>
+        <a href="contacto.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Pedí tu Presupuesto</a>
+      </div>
+    </div>
+  </section>
+><!-- SECCIONES TARJETAS (mismos textos) -->
+  <section class="section cards-section">
+    <h2>Soluciones en Construcción</h2>
+    <div class="cards">
+      <div class="card"><i class="fas fa-house"></i><h3>Viviendas en Steel Frame</h3><p>Construcción de viviendas unifamiliares y multifamiliares con sistema Steel Frame, optimizando tiempos de obra y calidad estructural.</p></div>
+      <div class="card"><i class="fas fa-industry"></i><h3>Obras Industriales</h3><p>Desarrollo de galpones, Edificios y espacios productivos con estructuras metálicas livianas y resistentes.</p></div>
+      <div class="card"><i class="fas fa-store"></i><h3>Locales Comerciales</h3><p>Construcción de locales comerciales con soluciones rápidas, limpias y escalables para emprendimientos y marcas.</p></div>
+    </div>
+  </section>
+
+  <section class="section cards-section">
+    <h2>Materiales Certificados</h2>
+    <div class="cards">
+      <div class="card"><i class="fas fa-layer-group"></i><h3>Perfiles Estructurales</h3><p>Perfiles galvanizados certificados que garantizan resistencia y durabilidad.</p></div>
+      <div class="card"><i class="fas fa-warehouse"></i><h3>Cubiertas y Cerramientos</h3><p>Chapas y cerramientos de alta calidad para todo tipo de obras.</p></div>
+      <div class="card"><i class="fas fa-snowflake"></i><h3>Aislaciones Térmicas</h3><p>Sistemas de aislación que mejoran el confort interior y la eficiencia energética.</p></div>
+    </div>
+  </section>
+
+  <section class="section cards-section">
+    <h2>Servicios de DS Steel</h2>
+    <div class="cards">
+      <div class="card"><i class="fas fa-drafting-compass"></i><h3>Diseño y Planificación</h3><p>Desarrollo de proyectos personalizados y planificación de obra.</p></div>
+      <div class="card"><i class="fas fa-tools"></i><h3>Ejecución de Obras</h3><p>Construcción integral con mano de obra especializada en Steel Frame.</p></div>
+      <div class="card"><i class="fas fa-headset"></i><h3>Asesoramiento Técnico</h3><p>Acompañamiento profesional desde la idea hasta la obra finalizada.</p></div>
+    </div>
+  </section>
+
+  <section id="razones" class="section cards-section">
+    <h2>Razones para construir con DS</h2>
+    <div class="cards">
+      <div class="card"><i class="fas fa-star"></i><h3>Calidad Garantizada</h3><p>Materiales y procesos certificados que aseguran la máxima calidad en cada proyecto.</p></div>
+      <div class="card"><i class="fas fa-award"></i><h3>Experiencia Comprobada</h3><p>Más de X años de trayectoria con cientos de clientes satisfechos.</p></div>
+      <div class="card"><i class="fas fa-user-check"></i><h3>Asesoramiento Personalizado</h3><p>Acompañamiento en todo el proceso, desde el diseño hasta la entrega final.</p></div>
+      <div class="card"><i class="fas fa-lightbulb"></i><h3>Innovación y Diseño</h3><p>Proyectos modernos y funcionales, adaptados a tus necesidades y estilo.</p></div>
+    </div>
+  </section>
+</main>
+</main>
+
+</main>
+
+</main>
+
+<script>
+/* INTRO FADE */
+setTimeout(()=>{
+  document.getElementById('intro').classList.add('fade-out');
+}, 3500);
+
+/* HERO SLIDER */
+const heroImgs = document.querySelectorAll('.hero-bg img');
+let heroIndex = 0;
+setInterval(()=>{
+  heroImgs[heroIndex].classList.remove('active');
+  heroIndex = (heroIndex + 1) % heroImgs.length;
+  heroImgs[heroIndex].classList.add('active');
+}, 5000);
+
+/* CARDS */
+const cards = document.querySelectorAll('.card');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('visible');}
+  });
+},{threshold:0.2});
+cards.forEach(card=>observer.observe(card));
+
+/* MENU MOBILE */
+const toggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+toggle.addEventListener('click', ()=>{
+  sidebar.classList.toggle('open');
+  toggle.innerHTML = sidebar.classList.contains('open')
+    ? '<i class="fas fa-angle-left"></i>'
+    : '<i class="fas fa-angle-right"></i>';
+});
+</script>
+
+</body>
+</html>
+
+ 
